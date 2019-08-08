@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_nav_dashboard"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_positions"
+            android:icon="@drawable/ic_menu_positions"
+            android:title="Positions" />
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_menu_calendar"
+            android:title="Calendar" />
+        <item
+            android:id="@+id/nav_database"
+            android:icon="@drawable/ic_menu_database"
+            android:title="Database" />
+        <item
+            android:id="@+id/nav_offer"
+            android:icon="@drawable/ic_menu_offer"
+            android:title="Offer Management"/>
+        <item
+            android:id="@+id/nav_drive"
+            android:icon="@drawable/ic_menu_drive"
+            android:title="Drive Management"/>
+        <item
+            android:id="@+id/nav_users"
+            android:icon="@drawable/ic_menu_users"
+            android:title="Users"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_signout"
+            android:title="Logout"/>
+
+    </group>
+
+</menu>
