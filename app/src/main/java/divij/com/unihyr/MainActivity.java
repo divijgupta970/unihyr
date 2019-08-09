@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle("Dashboard");
                 break;
             case R.id.nav_positions:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new PositionsFragment()).commit();
                 toolbar.setTitle("Positions");
                 break;
             case R.id.nav_calendar:
