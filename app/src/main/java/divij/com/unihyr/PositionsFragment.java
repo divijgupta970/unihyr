@@ -48,7 +48,6 @@ public class PositionsFragment extends Fragment {
         super.onViewCreated(v, savedInstanceState);
         spinner=v.findViewById(R.id.positionsSpinner);
         recyclerView=v.findViewById(R.id.positionsRecyclerView);
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         productList = new ArrayList<>();
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
