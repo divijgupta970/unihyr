@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import divij.com.unihyr.PositionsFragment;
 import divij.com.unihyr.R;
 import divij.com.unihyr.UtilClasses.Products;
 
@@ -35,19 +37,66 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(ProductViewHolder holder, final int position) {
         Products product = productList.get(position);
         holder.textViewPosition.setText(product.getPosition());
         holder.textViewLocation.setText(product.getLocation());
         holder.textViewInitiator.setText(product.getInitiator());
         holder.textViewId.setText(product.getId());
         if(product.isActivated()){
-            holder.deactivateButton.setVisibility(View.INVISIBLE);
+            holder.deactivateButton.setVisibility(View.VISIBLE);
+            holder.activatedButton.setVisibility(View.INVISIBLE);
+            holder.editButton.setVisibility(View.VISIBLE);
         }
         else{
-            holder.activatedButton.setVisibility(View.INVISIBLE);
+            holder.deactivateButton.setVisibility(View.INVISIBLE);
+            holder.activatedButton.setVisibility(View.VISIBLE);
             holder.editButton.setVisibility(View.INVISIBLE);
         }
+        holder.deactivateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(mCtx);
+                builder.setTitle("Deactivation");
+                builder.setMessage("Are you sure?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        productList.get(position).setActivated(false);
+                        notifyDataSetChanged();
+                        Toast.makeText(mCtx, "Deactivated", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                builder.show();
+            }
+        });
+        holder.activatedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(mCtx);
+                builder.setTitle("Activation");
+                builder.setMessage("Are you sure?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        productList.get(position).setActivated(true);
+                        notifyDataSetChanged();
+                        Toast.makeText(mCtx, "Activated", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                builder.show();
+            }
+        });
 
     }
 
