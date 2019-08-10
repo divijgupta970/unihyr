@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,14 +33,13 @@ import divij.com.unihyr.UtilClasses.Products;
 public class PositionsFragment extends Fragment {
     Spinner spinner;
     RecyclerView recyclerView;
-    List<Products> productList;
+    ArrayList<Products> productList;
+    ArrayList<Products> tempList;
     FloatingActionButton fab;
 
     public PositionsFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,16 +70,65 @@ public class PositionsFragment extends Fragment {
         productList = new ArrayList<>();
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,false));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,false));
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,false));
-        final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),productList);
+        tempList=new ArrayList<>();
+        for(int i=0;i<productList.size();i++){
+            tempList.add(productList.get(i));
+        }
+        final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),tempList);
         recyclerView.setAdapter(recyclerAdapter);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                initializeTempList();
+                if(i==1){
+                    int n=tempList.size();
+                    for(int j=0;j<n;j++){
+                        if(!(tempList.get(j).isActivated())){
+                            tempList.remove(j);
+                            j--;
+                            n--;
+                        }
+                    }
+
+                }
+                else if(i==2){
+                    int n=tempList.size();
+                    for(int j=0;j<n;j++){
+                        if(tempList.get(j).isActivated()){
+                            tempList.remove(j);
+                            j--;
+                            n--;
+                        }
+
+                    }
+                    for(int j=0;j<tempList.size();j++){
+                        Log.d("inActives",Integer.toString(j));
+                    }
+                }
+                recyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+    public void initializeTempList(){
+        tempList.clear();
+        for(int i=0;i<productList.size();i++){
+            tempList.add(productList.get(i));
+            Log.d("tempList",Boolean.toString(productList.get(i).isActivated()));
+            Log.d("tempList",Boolean.toString(tempList.get(i).isActivated()));
+        }
     }
 }

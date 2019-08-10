@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import divij.com.unihyr.PositionsFragment;
@@ -22,9 +22,9 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
 
 
     private Context mCtx;
-    private List<Products> productList;
+    private ArrayList<Products> productList;
 
-    public PositionsRecyclerAdapter(Context mCtx, List<Products> productList) {
+    public PositionsRecyclerAdapter(Context mCtx, ArrayList<Products> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
@@ -63,6 +63,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         productList.get(position).setActivated(false);
+                        //PositionsFragment.productList=productList;
                         notifyDataSetChanged();
                         Toast.makeText(mCtx, "Deactivated", Toast.LENGTH_SHORT).show();
                     }
@@ -85,6 +86,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         productList.get(position).setActivated(true);
+                        //PositionsFragment.productList=productList;
                         notifyDataSetChanged();
                         Toast.makeText(mCtx, "Activated", Toast.LENGTH_SHORT).show();
                     }
