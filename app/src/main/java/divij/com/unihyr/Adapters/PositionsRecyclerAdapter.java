@@ -63,8 +63,11 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         productList.get(position).setActivated(false);
-                        //PositionsFragment.productList=productList;
+                        PositionsFragment.productList.get(position).setActivated(false);
                         notifyDataSetChanged();
+                        //int temp=PositionsFragment.spinner.getSelectedItemPosition();
+                        PositionsFragment.spinner.setSelection(0);
+                        //PositionsFragment.spinner.setSelection(temp);
                         Toast.makeText(mCtx, "Deactivated", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -86,8 +89,11 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         productList.get(position).setActivated(true);
-                        //PositionsFragment.productList=productList;
+                        PositionsFragment.productList.get(position).setActivated(true);
                         notifyDataSetChanged();
+                        //int temp=PositionsFragment.spinner.getSelectedItemPosition();
+                        PositionsFragment.spinner.setSelection(0);
+                        //PositionsFragment.spinner.setSelection(temp);
                         Toast.makeText(mCtx, "Activated", Toast.LENGTH_SHORT).show();
                     }
                 });

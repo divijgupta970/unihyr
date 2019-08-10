@@ -31,9 +31,9 @@ import divij.com.unihyr.UtilClasses.Products;
  * A simple {@link Fragment} subclass.
  */
 public class PositionsFragment extends Fragment {
-    Spinner spinner;
+    public static Spinner spinner;
     RecyclerView recyclerView;
-    ArrayList<Products> productList;
+    public static ArrayList<Products> productList;
     ArrayList<Products> tempList;
     FloatingActionButton fab;
 
