@@ -1,12 +1,14 @@
 package divij.com.unihyr.Adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -17,13 +19,9 @@ import divij.com.unihyr.UtilClasses.Products;
 public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecyclerAdapter.ProductViewHolder> {
 
 
-    //this context we will use to inflate the layout
     private Context mCtx;
-
-    //we are storing all the products in a list
     private List<Products> productList;
 
-    //getting the context and product list with constructor
     public PositionsRecyclerAdapter(Context mCtx, List<Products> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
@@ -60,7 +58,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     }
 
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView textViewPosition, textViewLocation, textViewInitiator, textViewId;
         ImageView editButton,activatedButton,deactivateButton;
@@ -75,6 +73,23 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
             editButton=itemView.findViewById(R.id.editButton);
             activatedButton=itemView.findViewById(R.id.activateButton);
             deactivateButton=itemView.findViewById(R.id.deactivateButton);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Products currItem=productList.get(getLayoutPosition());
+            String moreInfoMessage="\nUpcoming: "+currItem.getUpcoming()+"\n\nOngoing: "+currItem.getOngoing()+"\n\nPast: "+currItem.getPast()+"\n\nTotalProfiles: "+currItem.getTotalProfiles();
+            AlertDialog.Builder builder=new AlertDialog.Builder(mCtx);
+            builder.setTitle("More Info");
+            builder.setMessage(moreInfoMessage);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            builder.show();
         }
     }
 }

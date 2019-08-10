@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class PositionsFragment extends Fragment {
     Spinner spinner;
     RecyclerView recyclerView;
     List<Products> productList;
+    FloatingActionButton fab;
 
     public PositionsFragment() {
         // Required empty public constructor
@@ -46,9 +49,22 @@ public class PositionsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
+        fab=v.findViewById(R.id.positionsFab);
         spinner=v.findViewById(R.id.positionsSpinner);
         recyclerView=v.findViewById(R.id.positionsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if(dy>0){
+                    fab.hide();
+                    return;
+                }
+                if(dy<0){
+                    fab.show();
+                }
+            }
+        });
         productList = new ArrayList<>();
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
         productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
