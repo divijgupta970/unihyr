@@ -68,13 +68,14 @@ public class PositionsFragment extends Fragment {
             }
         });
         productList = new ArrayList<>();
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,false));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,false));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph",1,0,0,1,false));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,false));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,false));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,false));
+        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
         tempList=new ArrayList<>();
         for(int i=0;i<productList.size();i++){
             tempList.add(productList.get(i));

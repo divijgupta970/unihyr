@@ -1,18 +1,17 @@
 package divij.com.unihyr.UtilClasses;
 
-public class Products {
-    private String id,position,location,initiator;
-    int upcoming,ongoing,past,totalProfiles;
-    boolean activated;
 
-    public Products(String id, String position, String location, String initiator, int upcoming, int ongoing, int past, int totalProfiles, boolean activated) {
+public class Products {
+    private String id,position,location,initiator,hiringSpoc;
+    private int totalProfiles;
+    private boolean activated;
+
+    public Products(String id, String position, String location, String initiator, String hiringSpoc, int totalProfiles, boolean activated) {
         this.id = id;
         this.position = position;
         this.location = location;
         this.initiator = initiator;
-        this.upcoming = upcoming;
-        this.ongoing = ongoing;
-        this.past = past;
+        this.hiringSpoc=hiringSpoc;
         this.totalProfiles = totalProfiles;
         this.activated = activated;
     }
@@ -33,17 +32,6 @@ public class Products {
         return initiator;
     }
 
-    public int getUpcoming() {
-        return upcoming;
-    }
-
-    public int getOngoing() {
-        return ongoing;
-    }
-
-    public int getPast() {
-        return past;
-    }
 
     public int getTotalProfiles() {
         return totalProfiles;
@@ -51,6 +39,10 @@ public class Products {
 
     public boolean isActivated() {
         return activated;
+    }
+
+    public String getHiringSpoc() {
+        return hiringSpoc;
     }
 
     public void setActivated(boolean activated) {

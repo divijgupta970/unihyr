@@ -10,10 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import divij.com.unihyr.PositionsFragment;
 import divij.com.unihyr.R;
 import divij.com.unihyr.UtilClasses.Products;
@@ -105,6 +102,23 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                 builder.show();
             }
         });
+        holder.infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Products currItem=productList.get(position);
+                String moreInfoMessage="\nHiring SPOC: "+currItem.getHiringSpoc()+"\n\nTotalProfiles: "+currItem.getTotalProfiles();
+                AlertDialog.Builder builder=new AlertDialog.Builder(mCtx);
+                builder.setTitle("More Info");
+                builder.setMessage(moreInfoMessage);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+            }
+        });
 
     }
 
@@ -118,7 +132,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView textViewPosition, textViewLocation, textViewInitiator, textViewId;
-        ImageView editButton,activatedButton,deactivateButton;
+        ImageView editButton,activatedButton,deactivateButton,infoButton;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -130,23 +144,12 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
             editButton=itemView.findViewById(R.id.editButton);
             activatedButton=itemView.findViewById(R.id.activateButton);
             deactivateButton=itemView.findViewById(R.id.deactivateButton);
+            infoButton=itemView.findViewById(R.id.infoButton);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            Products currItem=productList.get(getLayoutPosition());
-            String moreInfoMessage="\nUpcoming: "+currItem.getUpcoming()+"\n\nOngoing: "+currItem.getOngoing()+"\n\nPast: "+currItem.getPast()+"\n\nTotalProfiles: "+currItem.getTotalProfiles();
-            AlertDialog.Builder builder=new AlertDialog.Builder(mCtx);
-            builder.setTitle("More Info");
-            builder.setMessage(moreInfoMessage);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
-            builder.show();
         }
     }
 }

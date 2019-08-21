@@ -24,10 +24,8 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_black"
+                    style="@style/cardYellowText"
                     android:text="Position"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,10 +34,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:fontFamily="@font/roboto"
+                    style="@style/cardBlackText"
                     android:text="Management Trainee"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/textView6"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,10 +44,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto_black"
+                    style="@style/cardYellowText"
                     android:text="Location"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -60,10 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto"
+                    style="@style/cardBlackText"
                     android:text="Bangalore"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/textViewPosition"
                     app:layout_constraintTop_toBottomOf="@+id/textViewPosition" />
 
@@ -72,10 +64,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto_black"
                     android:text="Initiator"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
+                    style="@style/cardYellowText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -84,10 +74,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto"
+                    style="@style/cardBlackText"
                     android:text="Jayanth"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/textViewPosition"
                     app:layout_constraintTop_toBottomOf="@+id/textViewLocation" />
 
@@ -129,6 +117,14 @@
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/textViewPosition"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/infoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/card_info_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
 
