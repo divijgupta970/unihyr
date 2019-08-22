@@ -38,12 +38,10 @@ public class PositionsFragment extends Fragment {
     FloatingActionButton fab;
 
     public PositionsFragment() {
-        // Required empty public constructor
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_positions, container, false);
         return v;
     }
@@ -86,50 +84,5 @@ public class PositionsFragment extends Fragment {
                 R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                initializeTempList();
-                if(i==1){
-                    int n=tempList.size();
-                    for(int j=0;j<n;j++){
-                        if(!(tempList.get(j).isActivated())){
-                            tempList.remove(j);
-                            j--;
-                            n--;
-                        }
-                    }
-
-                }
-                else if(i==2){
-                    int n=tempList.size();
-                    for(int j=0;j<n;j++){
-                        if(tempList.get(j).isActivated()){
-                            tempList.remove(j);
-                            j--;
-                            n--;
-                        }
-
-                    }
-                    for(int j=0;j<tempList.size();j++){
-                        Log.d("inActives",Integer.toString(j));
-                    }
-                }
-                recyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
-    public void initializeTempList(){
-        tempList.clear();
-        for(int i=0;i<productList.size();i++){
-            tempList.add(productList.get(i));
-            Log.d("tempList",Boolean.toString(productList.get(i).isActivated()));
-            Log.d("tempList",Boolean.toString(tempList.get(i).isActivated()));
-        }
     }
 }

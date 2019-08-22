@@ -62,9 +62,6 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                         productList.get(position).setActivated(false);
                         PositionsFragment.productList.get(position).setActivated(false);
                         notifyDataSetChanged();
-                        //int temp=PositionsFragment.spinner.getSelectedItemPosition();
-                        PositionsFragment.spinner.setSelection(0);
-                        //PositionsFragment.spinner.setSelection(temp);
                         Toast.makeText(mCtx, "Deactivated", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -88,9 +85,6 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                         productList.get(position).setActivated(true);
                         PositionsFragment.productList.get(position).setActivated(true);
                         notifyDataSetChanged();
-                        //int temp=PositionsFragment.spinner.getSelectedItemPosition();
-                        PositionsFragment.spinner.setSelection(0);
-                        //PositionsFragment.spinner.setSelection(temp);
                         Toast.makeText(mCtx, "Activated", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -119,6 +113,42 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                 builder.show();
             }
         });
+        holder.inHouseTeamIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        holder.socialMediaIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        holder.careerPageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        holder.referralIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        holder.internalJobPortalIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        holder.externalConsultantIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
@@ -132,7 +162,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView textViewPosition, textViewLocation, textViewInitiator, textViewId;
-        ImageView editButton,activatedButton,deactivateButton,infoButton;
+        ImageView editButton,activatedButton,deactivateButton,infoButton,inHouseTeamIcon,socialMediaIcon,careerPageIcon,referralIcon,internalJobPortalIcon,externalConsultantIcon;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -145,6 +175,12 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
             activatedButton=itemView.findViewById(R.id.activateButton);
             deactivateButton=itemView.findViewById(R.id.deactivateButton);
             infoButton=itemView.findViewById(R.id.infoButton);
+            inHouseTeamIcon=itemView.findViewById(R.id.inHouseTeamIcon);
+            socialMediaIcon=itemView.findViewById(R.id.socialMediaIcon);
+            careerPageIcon=itemView.findViewById(R.id.careerPageIcon);
+            referralIcon=itemView.findViewById(R.id.referralIcon);
+            internalJobPortalIcon=itemView.findViewById(R.id.internalJobPortalIcon);
+            externalConsultantIcon=itemView.findViewById(R.id.externalConsultantIcon);
             itemView.setOnClickListener(this);
         }
 

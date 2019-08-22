@@ -9,6 +9,8 @@
         <item>All</item>
         <item>Active</item>
         <item>Inactive</item>
+        <item>Pending Approval</item>
+        <item>Pending Validation</item>
         <item>Closed</item>
     </string-array>
 </resources>
