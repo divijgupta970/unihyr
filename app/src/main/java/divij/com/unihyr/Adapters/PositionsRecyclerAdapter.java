@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import divij.com.unihyr.PositionsFragment;
@@ -20,10 +22,12 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
 
     private Context mCtx;
     private ArrayList<Products> productList;
+    private Context context;
 
-    public PositionsRecyclerAdapter(Context mCtx, ArrayList<Products> productList) {
+    public PositionsRecyclerAdapter(Context mCtx, ArrayList<Products> productList,Context context) {
         this.mCtx = mCtx;
         this.productList = productList;
+        this.context=context;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, final int position) {
+    public void onBindViewHolder(final ProductViewHolder holder, final int position) {
         Products product = productList.get(position);
         holder.textViewPosition.setText(product.getPosition());
         holder.textViewLocation.setText(product.getLocation());
@@ -116,37 +120,38 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
         holder.inHouseTeamIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ImageViewCompat.setImageTintList(holder.inHouseTeamIcon, ContextCompat.getColorStateList(context, R.color.colorAccent));
 
             }
         });
         holder.socialMediaIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ImageViewCompat.setImageTintList(holder.socialMediaIcon, ContextCompat.getColorStateList(context, R.color.colorAccent));
             }
         });
         holder.careerPageIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ImageViewCompat.setImageTintList(holder.careerPageIcon, ContextCompat.getColorStateList(context, R.color.colorAccent));
             }
         });
         holder.referralIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ImageViewCompat.setImageTintList(holder.referralIcon, ContextCompat.getColorStateList(context, R.color.colorAccent));
             }
         });
         holder.internalJobPortalIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ImageViewCompat.setImageTintList(holder.internalJobPortalIcon, ContextCompat.getColorStateList(context, R.color.colorAccent));
             }
         });
         holder.externalConsultantIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ImageViewCompat.setImageTintList(holder.externalConsultantIcon, ContextCompat.getColorStateList(context, R.color.colorAccent));
             }
         });
 

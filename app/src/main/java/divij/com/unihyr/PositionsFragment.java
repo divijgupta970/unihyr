@@ -78,7 +78,7 @@ public class PositionsFragment extends Fragment {
         for(int i=0;i<productList.size();i++){
             tempList.add(productList.get(i));
         }
-        final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),tempList);
+        final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),tempList,getActivity());
         recyclerView.setAdapter(recyclerAdapter);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
