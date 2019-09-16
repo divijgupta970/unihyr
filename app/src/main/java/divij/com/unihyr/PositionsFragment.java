@@ -13,15 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import divij.com.unihyr.Adapters.PositionsRecyclerAdapter;
 import divij.com.unihyr.UtilClasses.Products;
@@ -30,11 +26,12 @@ import divij.com.unihyr.UtilClasses.Products;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PositionsFragment extends Fragment {
+public class PositionsFragment extends Fragment{
     public static Spinner spinner;
     RecyclerView recyclerView;
+    ProgressBar progressBar;
     public static ArrayList<Products> productList;
-    ArrayList<Products> tempList;
+    ArrayList<String> positionsArray;
     FloatingActionButton fab;
 
     public PositionsFragment() {
@@ -50,6 +47,8 @@ public class PositionsFragment extends Fragment {
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
         fab=v.findViewById(R.id.positionsFab);
+        progressBar=v.findViewById(R.id.progressBarPositions);
+        progressBar.setVisibility(View.VISIBLE);
         spinner=v.findViewById(R.id.positionsSpinner);
         recyclerView=v.findViewById(R.id.positionsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -65,21 +64,19 @@ public class PositionsFragment extends Fragment {
                 }
             }
         });
-        productList = new ArrayList<>();
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,false));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,false));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,false));
-        productList.add(new Products("FIN437","Management Trainee","Bangalore","Jojin Joseph","Rohit",1,true));
-        tempList=new ArrayList<>();
-        for(int i=0;i<productList.size();i++){
-            tempList.add(productList.get(i));
-        }
-        final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),tempList,getActivity());
-        recyclerView.setAdapter(recyclerAdapter);
+        new fetchDataPositions(new OnPositionsFetched() {
+            @Override
+            public void OnPositionsFetched() {
+                progressBar.setVisibility(View.INVISIBLE);
+                positionsArray=fetchDataPositions.getArrayList();
+                productList = new ArrayList<>();
+                for (int i=0;i<positionsArray.size();i++){
+                    productList.add(new Products("FIN437",positionsArray.get(i),"Bangalore","Jojin Joseph","Rohit",1,true));
+                }
+                final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),productList,getActivity());
+                recyclerView.setAdapter(recyclerAdapter);
+            }
+        }).execute("https://demorms.unihyr.com/demo/api/allpost");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
