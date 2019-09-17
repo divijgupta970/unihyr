@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import divij.com.unihyr.PositionsFragment;
 import divij.com.unihyr.R;
 import divij.com.unihyr.UtilClasses.Products;
 
@@ -25,8 +24,10 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     private Context context;
 
     public PositionsRecyclerAdapter(Context mCtx, ArrayList<Products> productList,Context context) {
+        this.productList=new ArrayList<>();
+        this.productList.clear();
         this.mCtx = mCtx;
-        this.productList = productList;
+        this.productList.addAll(productList);
         this.context=context;
     }
 
@@ -64,7 +65,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         productList.get(position).setActivated(false);
-                        PositionsFragment.productList.get(position).setActivated(false);
+                        //PositionsFragment.productList.get(position).setActivated(false);
                         notifyDataSetChanged();
                         Toast.makeText(mCtx, "Deactivated", Toast.LENGTH_SHORT).show();
                     }
@@ -87,7 +88,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         productList.get(position).setActivated(true);
-                        PositionsFragment.productList.get(position).setActivated(true);
+                        //PositionsFragment.productList.get(position).setActivated(true);
                         notifyDataSetChanged();
                         Toast.makeText(mCtx, "Activated", Toast.LENGTH_SHORT).show();
                     }

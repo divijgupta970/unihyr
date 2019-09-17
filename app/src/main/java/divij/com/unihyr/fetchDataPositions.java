@@ -28,6 +28,7 @@ public class fetchDataPositions extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         try {
+            finalData.clear();
             JSONArray JA = new JSONArray(s);
             for(int i =0 ;i <JA.length(); i++){
                 JSONObject JO = (JSONObject) JA.get(i);

@@ -30,8 +30,6 @@ public class PositionsFragment extends Fragment{
     public static Spinner spinner;
     RecyclerView recyclerView;
     ProgressBar progressBar;
-    public static ArrayList<Products> productList;
-    ArrayList<String> positionsArray;
     FloatingActionButton fab;
 
     public PositionsFragment() {
@@ -67,9 +65,13 @@ public class PositionsFragment extends Fragment{
         new fetchDataPositions(new OnPositionsFetched() {
             @Override
             public void OnPositionsFetched() {
+                ArrayList<String> positionsArray=new ArrayList<>();
+                Log.d(PositionsFragment.class.getSimpleName(),"It executed!");
                 progressBar.setVisibility(View.INVISIBLE);
+                positionsArray.clear();
                 positionsArray=fetchDataPositions.getArrayList();
-                productList = new ArrayList<>();
+                ArrayList<Products> productList = new ArrayList<>();
+                productList.clear();
                 for (int i=0;i<positionsArray.size();i++){
                     productList.add(new Products("FIN437",positionsArray.get(i),"Bangalore","Jojin Joseph","Rohit",1,true));
                 }
