@@ -17,6 +17,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import divij.com.unihyr.Adapters.PositionsRecyclerAdapter;
@@ -31,6 +36,7 @@ public class PositionsFragment extends Fragment{
     RecyclerView recyclerView;
     ProgressBar progressBar;
     FloatingActionButton fab;
+    JSONArray result;
 
     public PositionsFragment() {
     }
@@ -68,12 +74,16 @@ public class PositionsFragment extends Fragment{
                 ArrayList<String> positionsArray=new ArrayList<>();
                 Log.d(PositionsFragment.class.getSimpleName(),"It executed!");
                 progressBar.setVisibility(View.INVISIBLE);
-                positionsArray.clear();
-                positionsArray=fetchDataPositions.getArrayList();
                 ArrayList<Products> productList = new ArrayList<>();
                 productList.clear();
-                for (int i=0;i<positionsArray.size();i++){
-                    productList.add(new Products("FIN437",positionsArray.get(i),"Bangalore","Jojin Joseph","Rohit",1,true));
+                result=fetchDataPositions.JA;
+                for(int i =0 ;i <result.length(); i++){
+                    try {
+                        JSONObject JO = (JSONObject) result.get(i);
+                        productList.add(new Products(JO.getString("postId"),JO.getString("title"),JO.getString("location"),JO.getString("initiator"),JO.getString("spoc"),JO.getInt("noOfPosts"),JO.getBoolean("active")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),productList,getActivity());
                 recyclerView.setAdapter(recyclerAdapter);
