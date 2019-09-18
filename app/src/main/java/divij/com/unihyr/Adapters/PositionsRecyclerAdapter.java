@@ -2,6 +2,8 @@ package divij.com.unihyr.Adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import divij.com.unihyr.R;
 import divij.com.unihyr.UtilClasses.Products;
+import divij.com.unihyr.ViewPositions;
 
 public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecyclerAdapter.ProductViewHolder> {
 
@@ -105,6 +108,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
             @Override
             public void onClick(View view) {
                 Products currItem=productList.get(position);
+                Log.d(PositionsRecyclerAdapter.class.getSimpleName(),"info clicked");
                 String moreInfoMessage="\nHiring SPOC: "+currItem.getHiringSpoc()+"\n\nTotalProfiles: "+currItem.getTotalProfiles();
                 AlertDialog.Builder builder=new AlertDialog.Builder(mCtx);
                 builder.setTitle("More Info");
@@ -165,7 +169,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     }
 
 
-    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ProductViewHolder extends RecyclerView.ViewHolder{
 
         TextView textViewPosition, textViewLocation, textViewInitiator, textViewId;
         ImageView editButton,activatedButton,deactivateButton,infoButton,inHouseTeamIcon,socialMediaIcon,careerPageIcon,referralIcon,internalJobPortalIcon,externalConsultantIcon;
@@ -187,11 +191,13 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
             referralIcon=itemView.findViewById(R.id.referralIcon);
             internalJobPortalIcon=itemView.findViewById(R.id.internalJobPortalIcon);
             externalConsultantIcon=itemView.findViewById(R.id.externalConsultantIcon);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d(PositionsRecyclerAdapter.class.getSimpleName(),"Card clicked");
+                    mCtx.startActivity(new Intent(mCtx.getApplicationContext(),ViewPositions.class));
+                }
+            });
         }
     }
 }

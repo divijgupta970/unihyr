@@ -8,6 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_margin="5dp">
 
         <RelativeLayout
@@ -19,65 +20,6 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp">
 
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/cardYellowText"
-                    android:text="Position"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textViewPosition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    style="@style/cardBlackText"
-                    android:text="Management Trainee"
-                    app:layout_constraintStart_toEndOf="@+id/textView6"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    style="@style/cardYellowText"
-                    android:text="Location"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-                <TextView
-                    android:id="@+id/textViewLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    style="@style/cardBlackText"
-                    android:text="Bangalore"
-                    app:layout_constraintStart_toStartOf="@+id/textViewPosition"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewPosition" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Initiator"
-                    style="@style/cardYellowText"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-                <TextView
-                    android:id="@+id/textViewInitiator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    style="@style/cardBlackText"
-                    android:text="Jayanth"
-                    app:layout_constraintStart_toStartOf="@+id/textViewPosition"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewLocation" />
 
                 <ImageView
                     android:id="@+id/deactivateButton"
@@ -106,17 +48,6 @@
                     app:layout_constraintEnd_toStartOf="@id/deactivateButton"
                     app:layout_constraintTop_toBottomOf="@+id/textViewInitiator"
                     app:srcCompat="@drawable/edit_icon" />
-
-                <TextView
-                    android:id="@+id/positionId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/roboto_light"
-                    android:text="FIN437"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@+id/textViewPosition"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/infoButton"
@@ -179,6 +110,76 @@
                     app:layout_constraintStart_toEndOf="@+id/internalJobPortalIcon"
                     app:layout_constraintTop_toTopOf="@+id/internalJobPortalIcon"
                     app:srcCompat="@drawable/external_consultant_icon" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    style="@style/cardYellowText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Position"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewPosition"
+                    style="@style/cardBlackText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Management Trainee"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    style="@style/cardYellowText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/textViewLocation"
+                    style="@style/cardBlackText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Bangalore"
+                    app:layout_constraintStart_toStartOf="@+id/textViewPosition"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPosition" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    style="@style/cardYellowText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Initiator"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                <TextView
+                    android:id="@+id/textViewInitiator"
+                    style="@style/cardBlackText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Jayanth"
+                    app:layout_constraintStart_toStartOf="@+id/textViewPosition"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewLocation" />
+
+                <TextView
+                    android:id="@+id/positionId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="FIN437"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/textViewPosition"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
 
