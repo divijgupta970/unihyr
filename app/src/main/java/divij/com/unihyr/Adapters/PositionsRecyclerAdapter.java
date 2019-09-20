@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,17 +16,22 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import divij.com.unihyr.R;
 import divij.com.unihyr.UtilClasses.Products;
 import divij.com.unihyr.ViewPositions;
 
-public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecyclerAdapter.ProductViewHolder> {
+public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecyclerAdapter.ProductViewHolder> implements Filterable {
 
 
     private Context mCtx;
     private ArrayList<Products> productList;
     private Context context;
+    private JSONArray jsonArray;
+    public ArrayList<Products> productListfiltered;
 
     public PositionsRecyclerAdapter(Context mCtx, ArrayList<Products> productList,Context context) {
         this.productList=new ArrayList<>();
@@ -32,6 +39,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
         this.mCtx = mCtx;
         this.productList.addAll(productList);
         this.context=context;
+        this.productListfiltered=productList;
     }
 
     @Override
@@ -165,7 +173,42 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return productListfiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String key =constraint.toString();
+                if (key.isEmpty())
+                {
+                    productListfiltered=productList;
+                }
+                else
+                {
+                    ArrayList<Products> lstFiltered = new ArrayList<>();
+                    for(Products row:productList)
+                    {
+                        if (row.getPosition().toLowerCase().contains(key.toLowerCase())){
+                            lstFiltered.add(row);
+                        }
+                    }
+                    productListfiltered= lstFiltered;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values= productListfiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                productListfiltered = (ArrayList<Products>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
 
@@ -195,9 +238,15 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                 @Override
                 public void onClick(View view) {
                     Log.d(PositionsRecyclerAdapter.class.getSimpleName(),"Card clicked");
-                    mCtx.startActivity(new Intent(mCtx.getApplicationContext(),ViewPositions.class));
+                    Intent intent=new Intent(mCtx.getApplicationContext(),ViewPositions.class);
+                    intent.putExtra("json array",jsonArray.toString());
+                    mCtx.startActivity(intent);
                 }
             });
         }
+    }
+
+    public void setJsonArray(JSONArray jsonArray) {
+        this.jsonArray = jsonArray;
     }
 }

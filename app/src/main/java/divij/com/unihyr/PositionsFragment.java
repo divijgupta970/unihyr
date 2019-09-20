@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,6 +40,7 @@ public class PositionsFragment extends Fragment{
     ProgressBar progressBar;
     FloatingActionButton fab;
     JSONArray result;
+    EditText search_bar;
 
     public PositionsFragment() {
     }
@@ -55,6 +59,7 @@ public class PositionsFragment extends Fragment{
         progressBar.setVisibility(View.VISIBLE);
         spinner=v.findViewById(R.id.positionsSpinner);
         recyclerView=v.findViewById(R.id.positionsRecyclerView);
+        search_bar=v.findViewById(R.id.positionsSearchEditText);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -71,7 +76,6 @@ public class PositionsFragment extends Fragment{
         new fetchDataPositions(new OnPositionsFetched() {
             @Override
             public void OnPositionsFetched() {
-                ArrayList<String> positionsArray=new ArrayList<>();
                 Log.d(PositionsFragment.class.getSimpleName(),"It executed!");
                 progressBar.setVisibility(View.INVISIBLE);
                 ArrayList<Products> productList = new ArrayList<>();
@@ -86,7 +90,24 @@ public class PositionsFragment extends Fragment{
                     }
                 }
                 final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),productList,getActivity());
+                search_bar.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        recyclerAdapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
                 recyclerView.setAdapter(recyclerAdapter);
+                recyclerAdapter.setJsonArray(result);
             }
         }).execute("https://demorms.unihyr.com/demo/api/allpost");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),

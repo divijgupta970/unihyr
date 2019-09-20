@@ -3,12 +3,17 @@ package divij.com.unihyr;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import divij.com.unihyr.Adapters.NonScrollableVP;
 import divij.com.unihyr.Adapters.ViewPositionsAdapter;
@@ -17,6 +22,7 @@ public class ViewPositions extends AppCompatActivity {
     Toolbar toolbar;
     NonScrollableVP viewPager;
     TabLayout tabLayout;
+    JSONArray jsonArrayPositions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +30,12 @@ public class ViewPositions extends AppCompatActivity {
         toolbar=findViewById(R.id.viewPositionsToolbar);
         viewPager=findViewById(R.id.viewPAgerViewPositions);
         tabLayout=findViewById(R.id.tabLayoutViewPositions);
+        Intent intent=getIntent();
+        try {
+            jsonArrayPositions=new JSONArray(intent.getStringExtra("json array"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         setUpViewPager();
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
