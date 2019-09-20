@@ -80,7 +80,7 @@ public class PositionsFragment extends Fragment{
                 for(int i =0 ;i <result.length(); i++){
                     try {
                         JSONObject JO = (JSONObject) result.get(i);
-                        productList.add(new Products(JO.getString("postId"),JO.getString("title"),JO.getString("location"),JO.getString("initiator"),JO.getString("spoc"),JO.getInt("noOfPosts"),JO.getBoolean("active")));
+                        productList.add(new Products(JO.getString("jobCode"),JO.getString("title"),JO.getString("location"),JO.getString("initiator"),JO.getString("spoc"),JO.getInt("noOfPosts"),JO.getBoolean("active")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
