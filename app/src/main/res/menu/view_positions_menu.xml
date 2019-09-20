@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ViewPositions">
+    <item
+        android:id="@+id/action_edit"
+        android:orderInCategory="300"
+        android:title="Edit"
+        android:icon="@drawable/edit_icon_white"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_moreinfo"
+        android:orderInCategory="200"
+        android:title="More Info"
+        android:icon="@drawable/card_info_icon_white"
+        app:showAsAction="ifRoom"/>
+
+</menu>

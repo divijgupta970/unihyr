@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import divij.com.unihyr.Adapters.ViewPositionsAdapter;
@@ -22,6 +23,7 @@ public class VIewPositionsProfilesFragment extends Fragment {
     ViewPositionsAdapter adapter;
     TabLayout tabLayout;
     ViewPager viewPager;
+    FloatingActionButton fab;
 
     public VIewPositionsProfilesFragment() {
         // Required empty public constructor
@@ -36,6 +38,13 @@ public class VIewPositionsProfilesFragment extends Fragment {
         adapter=new ViewPositionsAdapter(getChildFragmentManager());
         tabLayout=v.findViewById(R.id.tabLayoutViewPositionsProfile);
         viewPager=v.findViewById(R.id.viewPagerViewPositionsProfile);
+        fab=v.findViewById(R.id.uploadProfileFloatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: add upload profile code here
+            }
+        });
         setUpViewPager();
         return v;
     }

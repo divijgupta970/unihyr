@@ -1,10 +1,11 @@
 package divij.com.unihyr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
@@ -44,5 +45,22 @@ public class ViewPositions extends AppCompatActivity {
         viewPositionsAdapter.addFragment(viewPositionsDrivesFragment,"Drives");
         viewPager.setAdapter(viewPositionsAdapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.view_positions_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.action_moreinfo){
+            //TODO: Add more info code here
+        }
+        else if(item.getItemId()==R.id.action_edit){
+            //TODO: Add edit code here
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
