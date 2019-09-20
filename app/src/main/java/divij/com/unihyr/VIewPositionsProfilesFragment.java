@@ -45,13 +45,14 @@ public class VIewPositionsProfilesFragment extends Fragment {
         VPPInHouseTeamFragment vppInHouseTeamFragment=new VPPInHouseTeamFragment();
         VPPRecommendedFragment vppRecommendedFragment= new VPPRecommendedFragment();
         VPPReferralFragment vppReferralFragment= new VPPReferralFragment();
-        adapter.addFragment(vppActiveProfilesFragment,"Active Profiles");
+        adapter.addFragment(vppActiveProfilesFragment,null);
         adapter.addFragment(vppInHouseTeamFragment,null);
         adapter.addFragment(vppCareerPageFramgment,null);
         adapter.addFragment(vppReferralFragment,null);
         adapter.addFragment(vppRecommendedFragment,null);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_active_profiles);
         tabLayout.getTabAt(1).setIcon(R.drawable.inhouse_team_icon);
         tabLayout.getTabAt(2).setIcon(R.drawable.career_page_icon);
         tabLayout.getTabAt(3).setIcon(R.drawable.referral_icon);

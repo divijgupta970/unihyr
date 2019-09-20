@@ -9,6 +9,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:fontFamily="@font/roboto_bold"
+        android:layout_margin="8dp"
+        android:text="Referral"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
 </FrameLayout>
