@@ -5,50 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewPositions">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/viewPositionsToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:title="View Position" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayoutViewPositions"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/viewPositionsAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabSelectedTextColor="@color/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@+id/viewPositionsToolbar">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/viewPositionsToolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Profiles" />
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:title="View Position" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutViewPositions"
+            android:layout_width="match_parent"
+            android:elevation="0dp"
             android:layout_height="wrap_content"
-            android:text="To do's" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Team" />
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Drives" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
+            app:tabTextColor="@android:color/white"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabIndicatorColor="@color/tabIndicatorColor">
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <divij.com.unihyr.Adapters.NonScrollableVP
         android:id="@+id/viewPAgerViewPositions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -56,5 +40,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayoutViewPositions" />
+        app:layout_constraintTop_toBottomOf="@+id/viewPositionsAppBarLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

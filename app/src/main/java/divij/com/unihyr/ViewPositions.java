@@ -9,11 +9,12 @@ import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
+import divij.com.unihyr.Adapters.NonScrollableVP;
 import divij.com.unihyr.Adapters.ViewPositionsAdapter;
 
 public class ViewPositions extends AppCompatActivity {
     Toolbar toolbar;
-    ViewPager viewPager;
+    NonScrollableVP viewPager;
     TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,7 @@ public class ViewPositions extends AppCompatActivity {
         toolbar=findViewById(R.id.viewPositionsToolbar);
         viewPager=findViewById(R.id.viewPAgerViewPositions);
         tabLayout=findViewById(R.id.tabLayoutViewPositions);
-        viewPager.setAdapter(new ViewPositionsAdapter(getSupportFragmentManager()));
-        tabLayout.setupWithViewPager(viewPager);
+        setUpViewPager();
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,9 +31,18 @@ public class ViewPositions extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        tabLayout.getTabAt(0).setText("profiles");
-        tabLayout.getTabAt(1).setText("to do's");
-        tabLayout.getTabAt(2).setText("team");
-        tabLayout.getTabAt(3).setText("drives");
+    }
+    public void setUpViewPager(){
+        VIewPositionsProfilesFragment vIewPositionsProfilesFragment=new VIewPositionsProfilesFragment();
+        ViewPositionsToDoFragment viewPositionsToDoFragment=new ViewPositionsToDoFragment();
+        ViewPositionsTeamFragment viewPositionsTeamFragment=new ViewPositionsTeamFragment();
+        ViewPositionsDrivesFragment viewPositionsDrivesFragment=new ViewPositionsDrivesFragment();
+        ViewPositionsAdapter viewPositionsAdapter=new ViewPositionsAdapter(getSupportFragmentManager());
+        viewPositionsAdapter.addFragment(vIewPositionsProfilesFragment,"Profiles");
+        viewPositionsAdapter.addFragment(viewPositionsToDoFragment,"To do's");
+        viewPositionsAdapter.addFragment(viewPositionsTeamFragment,"Team");
+        viewPositionsAdapter.addFragment(viewPositionsDrivesFragment,"Drives");
+        viewPager.setAdapter(viewPositionsAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

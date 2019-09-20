@@ -1,32 +1,37 @@
 package divij.com.unihyr.Adapters;
 
+import android.util.Log;
+import android.view.MotionEvent;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
-import divij.com.unihyr.VIewPositionsProfilesFragment;
-import divij.com.unihyr.ViewPositionsDrivesFragment;
-import divij.com.unihyr.ViewPositionsTeamFragment;
-import divij.com.unihyr.ViewPositionsToDoFragment;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewPositionsAdapter extends FragmentPagerAdapter {
+    List<Fragment> mFragments = new ArrayList<>();
+    List<String> mFragmentsTitle = new ArrayList<>();
     public ViewPositionsAdapter(FragmentManager fm) {
         super(fm);
+    }
+    public void addFragment(Fragment f, String s) {
+        mFragments.add(f);
+        mFragmentsTitle.add(s);
+    }
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragmentsTitle.get(position);
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch(position){
-            case 0: return new VIewPositionsProfilesFragment();
-            case 1: return new ViewPositionsToDoFragment();
-            case 2: return new ViewPositionsTeamFragment();
-            case 3: return new ViewPositionsDrivesFragment();
-        }
-        return null;
+        return mFragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return mFragments.size();
     }
+
 }
