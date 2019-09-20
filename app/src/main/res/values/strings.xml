@@ -13,4 +13,10 @@
         <item>Pending Validation</item>
         <item>Closed</item>
     </string-array>
+    <string-array name="select_status_spinner_array">
+        <item>Select Status</item>
+    </string-array>
+    <string-array name="select_chanel_spinner_array">
+        <item>Select Channel</item>
+    </string-array>
 </resources>
