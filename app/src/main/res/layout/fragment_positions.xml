@@ -29,7 +29,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/rounded_edittext"
-            android:drawableEnd="@drawable/search_icon"
+            android:drawableStart="@drawable/search_icon"
             android:ems="10"
             android:hint="Search a position"
             android:padding="8dp"

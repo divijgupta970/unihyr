@@ -51,7 +51,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
 
     @Override
     public void onBindViewHolder(final ProductViewHolder holder, final int position) {
-        Products product = productList.get(position);
+        Products product = productListfiltered.get(position);
         holder.textViewPosition.setText(product.getPosition());
         holder.textViewLocation.setText(product.getLocation());
         holder.textViewInitiator.setText(product.getInitiator());
@@ -75,7 +75,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        productList.get(position).setActivated(false);
+                        productListfiltered.get(position).setActivated(false);
                         //PositionsFragment.productList.get(position).setActivated(false);
                         notifyDataSetChanged();
                         Toast.makeText(mCtx, "Deactivated", Toast.LENGTH_SHORT).show();
@@ -98,7 +98,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        productList.get(position).setActivated(true);
+                        productListfiltered.get(position).setActivated(true);
                         //PositionsFragment.productList.get(position).setActivated(true);
                         notifyDataSetChanged();
                         Toast.makeText(mCtx, "Activated", Toast.LENGTH_SHORT).show();
@@ -115,7 +115,7 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
         holder.infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Products currItem=productList.get(position);
+                Products currItem=productListfiltered.get(position);
                 Log.d(PositionsRecyclerAdapter.class.getSimpleName(),"info clicked");
                 String moreInfoMessage="\nHiring SPOC: "+currItem.getHiringSpoc()+"\n\nTotalProfiles: "+currItem.getTotalProfiles();
                 AlertDialog.Builder builder=new AlertDialog.Builder(mCtx);
