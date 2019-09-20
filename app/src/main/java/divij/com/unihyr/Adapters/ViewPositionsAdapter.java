@@ -1,7 +1,5 @@
 package divij.com.unihyr.Adapters;
 
-import android.util.Log;
-import android.view.MotionEvent;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
