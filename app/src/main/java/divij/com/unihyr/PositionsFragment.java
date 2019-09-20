@@ -15,10 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -114,5 +117,29 @@ public class PositionsFragment extends Fragment{
                 R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch(i){
+                    case 0://TODO: Add all here
+                        break;
+                    case 1://TODO: Add active here
+                        break;
+                    case 2://TODO: Add inactive here
+                        break;
+                    case 3://TODO: Add pending approval here
+                        break;
+                    case 4://TODO: Add pending validation here
+                        break;
+                    case 5://TODO: Add closed here
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }
