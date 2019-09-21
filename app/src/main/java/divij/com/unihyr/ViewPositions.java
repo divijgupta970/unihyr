@@ -12,8 +12,8 @@ import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
-import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import divij.com.unihyr.Adapters.NonScrollableVP;
 import divij.com.unihyr.Adapters.ViewPositionsAdapter;
@@ -22,7 +22,7 @@ public class ViewPositions extends AppCompatActivity {
     Toolbar toolbar;
     NonScrollableVP viewPager;
     TabLayout tabLayout;
-    JSONArray jsonArrayPositions;
+    JSONObject jsonObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +31,14 @@ public class ViewPositions extends AppCompatActivity {
         viewPager=findViewById(R.id.viewPAgerViewPositions);
         tabLayout=findViewById(R.id.tabLayoutViewPositions);
         Intent intent=getIntent();
+        String json=intent.getStringExtra("json object");
         try {
-            jsonArrayPositions=new JSONArray(intent.getStringExtra("json array"));
+            jsonObject=new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            toolbar.setTitle(jsonObject.getString("title"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

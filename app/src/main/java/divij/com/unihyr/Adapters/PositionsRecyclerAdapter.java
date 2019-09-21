@@ -16,21 +16,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 import divij.com.unihyr.R;
 import divij.com.unihyr.UtilClasses.Products;
 import divij.com.unihyr.ViewPositions;
 
 public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecyclerAdapter.ProductViewHolder> implements Filterable {
-
-
     private Context mCtx;
     private ArrayList<Products> productList;
     private Context context;
-    private JSONArray jsonArray;
     public ArrayList<Products> productListfiltered;
 
     public PositionsRecyclerAdapter(Context mCtx, ArrayList<Products> productList,Context context) {
@@ -239,14 +233,10 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                 public void onClick(View view) {
                     Log.d(PositionsRecyclerAdapter.class.getSimpleName(),"Card clicked");
                     Intent intent=new Intent(mCtx.getApplicationContext(),ViewPositions.class);
-                    intent.putExtra("json array",jsonArray.toString());
+                    intent.putExtra("json object",productListfiltered.get(getLayoutPosition()).getJsonObject().toString());
                     mCtx.startActivity(intent);
                 }
             });
         }
-    }
-
-    public void setJsonArray(JSONArray jsonArray) {
-        this.jsonArray = jsonArray;
     }
 }

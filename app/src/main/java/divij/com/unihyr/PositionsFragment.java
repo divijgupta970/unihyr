@@ -79,7 +79,6 @@ public class PositionsFragment extends Fragment{
         new fetchDataPositions(new OnPositionsFetched() {
             @Override
             public void OnPositionsFetched() {
-                Log.d(PositionsFragment.class.getSimpleName(),"It executed!");
                 progressBar.setVisibility(View.INVISIBLE);
                 ArrayList<Products> productList = new ArrayList<>();
                 productList.clear();
@@ -87,7 +86,7 @@ public class PositionsFragment extends Fragment{
                 for(int i =0 ;i <result.length(); i++){
                     try {
                         JSONObject JO = (JSONObject) result.get(i);
-                        productList.add(new Products(JO.getString("jobCode"),JO.getString("title"),JO.getString("location"),JO.getString("initiator"),JO.getString("spoc"),JO.getInt("noOfPosts"),JO.getBoolean("active")));
+                        productList.add(new Products(JO.getString("jobCode"),JO.getString("title"),JO.getString("location"),JO.getString("initiator"),JO.getString("spoc"),JO.getInt("noOfPosts"),JO.getBoolean("active"),JO));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -110,7 +109,6 @@ public class PositionsFragment extends Fragment{
                     }
                 });
                 recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.setJsonArray(result);
             }
         }).execute("https://demorms.unihyr.com/demo/api/allpost");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
