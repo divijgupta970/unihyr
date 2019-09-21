@@ -25,4 +25,9 @@
         <item>Pending Offers</item>
         <item>Pending Feedbacks</item>
     </string-array>
+    <string-array name="drives_spinner_array">
+        <item>Ongoing</item>
+        <item>Upcoming</item>
+        <item>Past</item>
+    </string-array>
 </resources>
