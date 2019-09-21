@@ -19,4 +19,10 @@
     <string-array name="select_chanel_spinner_array">
         <item>Select Channel</item>
     </string-array>
+    <string-array name="todo_spinner_array">
+        <item>Pending for reviews</item>
+        <item>To Be Scheduled For Interview</item>
+        <item>Pending Offers</item>
+        <item>Pending Feedbacks</item>
+    </string-array>
 </resources>
