@@ -1,6 +1,7 @@
 package divij.com.unihyr;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +51,7 @@ public class VPPActiveProfilesFragment extends Fragment {
         selectChannelSpinner=v.findViewById(R.id.spinnerSelectChannel);
         selectStatusSpinner=v.findViewById(R.id.spinnerSelectStatus);
         progressBar=v.findViewById(R.id.pbActiveProfiles);
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
         recyclerView=v.findViewById(R.id.rvActiveProfiles);
         noOfProfiles=v.findViewById(R.id.noOfActiveProfiles);
         activeProfiles=new ArrayList<>();
@@ -67,6 +71,22 @@ public class VPPActiveProfilesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         activeProfiles.clear();
+        progressBar.setVisibility(View.INVISIBLE);
+        Uri builtUri = Uri.parse("http://sharechat.unihyr.com/demo/api/hrmanagepositionlistapi").buildUpon()
+                .appendQueryParameter("postId", ViewPositions.postId)
+                .appendQueryParameter("filterBy", "all")
+                .appendQueryParameter("selected_channel","0")
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        Log.d("VPPActiveProfiles",url.toString());
+
+        /*activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
         activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
         activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
         activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
@@ -74,8 +94,13 @@ public class VPPActiveProfilesFragment extends Fragment {
         activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
         activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
         activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));*/
+        new fetchDataPositions(new OnPositionsFetched() {
+            @Override
+            public void OnPositionsFetched() {
+
+            }
+        });
         ActiveProfilesAdapter recyclerViewAdapter=new ActiveProfilesAdapter(getActivity(),activeProfiles);
         recyclerView.setAdapter(recyclerViewAdapter);
     }

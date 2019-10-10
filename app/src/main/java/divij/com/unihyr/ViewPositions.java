@@ -22,7 +22,8 @@ public class ViewPositions extends AppCompatActivity {
     private Toolbar toolbar;
     private NonScrollableVP viewPager;
     private TabLayout tabLayout;
-    private JSONObject jsonObject;
+    private JSONObject jsonObject;//old json
+    public static String postId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class ViewPositions extends AppCompatActivity {
         }
         try {
             toolbar.setTitle(jsonObject.getString("title"));
+            postId=jsonObject.getString("postId");
         } catch (JSONException e) {
             e.printStackTrace();
         }

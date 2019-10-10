@@ -15,7 +15,6 @@ public class ActiveProfiles {
         this.exp = exp;
         this.np = np;
     }
-
     public String getName() {
         return name;
     }
