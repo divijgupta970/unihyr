@@ -19,10 +19,10 @@ import divij.com.unihyr.Adapters.NonScrollableVP;
 import divij.com.unihyr.Adapters.ViewPositionsAdapter;
 
 public class ViewPositions extends AppCompatActivity {
-    Toolbar toolbar;
-    NonScrollableVP viewPager;
-    TabLayout tabLayout;
-    JSONObject jsonObject;
+    private Toolbar toolbar;
+    private NonScrollableVP viewPager;
+    private TabLayout tabLayout;
+    private JSONObject jsonObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

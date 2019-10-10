@@ -3,22 +3,37 @@ package divij.com.unihyr;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import divij.com.unihyr.Adapters.ActiveProfilesAdapter;
+import divij.com.unihyr.CardClasses.ActiveProfiles;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class VPPActiveProfilesFragment extends Fragment {
-    Spinner selectChannelSpinner;
-    Spinner selectStatusSpinner;
-
+    private Spinner selectChannelSpinner;
+    private Spinner selectStatusSpinner;
+    private RecyclerView recyclerView;
+    private List<ActiveProfiles> activeProfiles;
+    private ProgressBar progressBar;
+    private TextView noOfProfiles;
     public VPPActiveProfilesFragment() {
         // Required empty public constructor
     }
@@ -31,6 +46,12 @@ public class VPPActiveProfilesFragment extends Fragment {
         View v=inflater.inflate(R.layout.fragment_vppactive_profiles, container, false);
         selectChannelSpinner=v.findViewById(R.id.spinnerSelectChannel);
         selectStatusSpinner=v.findViewById(R.id.spinnerSelectStatus);
+        progressBar=v.findViewById(R.id.pbActiveProfiles);
+        progressBar.setVisibility(View.INVISIBLE);
+        recyclerView=v.findViewById(R.id.rvActiveProfiles);
+        noOfProfiles=v.findViewById(R.id.noOfActiveProfiles);
+        activeProfiles=new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ArrayAdapter<CharSequence> adapter1= ArrayAdapter.createFromResource(getActivity(),
                 R.array.select_status_spinner_array, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -42,4 +63,20 @@ public class VPPActiveProfilesFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        activeProfiles.clear();
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
+        ActiveProfilesAdapter recyclerViewAdapter=new ActiveProfilesAdapter(getActivity(),activeProfiles);
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
 }

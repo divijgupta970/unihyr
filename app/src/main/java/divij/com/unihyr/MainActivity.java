@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle("Positions");
                 break;
             case R.id.nav_calendar:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CalendarFragment()).commit();
                 toolbar.setTitle("Calendar");
                 break;
             case R.id.nav_database:
