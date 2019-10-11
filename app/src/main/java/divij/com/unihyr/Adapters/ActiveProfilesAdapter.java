@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,15 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import divij.com.unihyr.CardClasses.ActiveProfiles;
 import divij.com.unihyr.R;
-import divij.com.unihyr.UtilClasses.Products;
 
 public class ActiveProfilesAdapter extends RecyclerView.Adapter<ActiveProfilesAdapter.ActiveProfilesViewHolder> {
     private Context mCtx;
     private List<ActiveProfiles> activeProfiles;
-    public ActiveProfilesAdapter(Context mCtx, List<ActiveProfiles> activeProfiles){
+    public ActiveProfilesAdapter(Context mCtx,List<ActiveProfiles> activeProfiles){
         this.mCtx=mCtx;
         this.activeProfiles=new ArrayList<>();
         this.activeProfiles.clear();
@@ -71,7 +72,6 @@ public class ActiveProfilesAdapter extends RecyclerView.Adapter<ActiveProfilesAd
     public int getItemCount() {
         return activeProfiles.size();
     }
-
     class ActiveProfilesViewHolder extends RecyclerView.ViewHolder{
         TextView name, submittedBy, channel, status;
         ImageView moreInfo;
