@@ -39,10 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
                     android:text="Name"
-                    app:layout_constraintEnd_toStartOf="@+id/nameid"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
@@ -52,11 +49,11 @@
                     style="@style/cardBlackText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="84dp"
                     android:layout_marginTop="8dp"
                     android:text="Sumit"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/guideOffers"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="92dp" />
 
                 <TextView
                     android:id="@+id/position"
@@ -65,9 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
                     android:text="Position"
-                    app:layout_constraintEnd_toStartOf="@+id/positionId"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/name" />
 
@@ -76,11 +71,11 @@
                     style="@style/cardBlackText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="84dp"
                     android:layout_marginTop="8dp"
                     android:text="Senior Analyst"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameid" />
+                    app:layout_constraintStart_toEndOf="@id/guideOffers"
+                    app:layout_constraintTop_toBottomOf="@+id/nameid"
+                    tools:layout_editor_absoluteX="92dp" />
 
                 <TextView
                     android:id="@+id/user"
@@ -89,21 +84,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
                     android:text="User"
-                    app:layout_constraintEnd_toStartOf="@+id/positionId"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/position" />
+
                 <TextView
                     android:id="@+id/userId"
                     style="@style/cardBlackText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="84dp"
                     android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toEndOf="@id/guideOffers"
                     android:text="Anamika"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/positionId" />
+                    app:layout_constraintTop_toBottomOf="@+id/positionId"
+                    tools:layout_editor_absoluteX="92dp" />
+
                 <TextView
                     android:id="@+id/status"
                     style="@style/cardYellowText"
@@ -111,21 +106,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
                     android:text="Status"
-                    app:layout_constraintEnd_toStartOf="@+id/positionId"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/user" />
+
                 <TextView
                     android:id="@+id/statusId"
                     style="@style/cardBlackText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="84dp"
                     android:layout_marginTop="8dp"
                     android:text="Offer Granted"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/userId" />
+                    app:layout_constraintStart_toEndOf="@id/guideOffers"
+                    app:layout_constraintTop_toBottomOf="@+id/userId"
+                    tools:layout_editor_absoluteX="92dp" />
+
+                <View
+                    android:id="@+id/guideOffers"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/position"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

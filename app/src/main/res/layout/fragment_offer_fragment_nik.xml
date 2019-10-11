@@ -11,9 +11,10 @@
 
         <EditText
             android:id="@+id/searchoffer"
-            android:layout_width="195dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/rounded_edittext"
             android:drawableStart="@drawable/search_icon"
             android:ems="10"
@@ -24,24 +25,21 @@
             app:layout_constraintEnd_toStartOf="@+id/mngtemplate"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/mngtemplate" />
 
         <Button
             android:id="@+id/mngtemplate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="675dp"
+            android:background="@color/colorAccent"
             android:text="Manage Template"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/searchoffer"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/colorAccent"
-            android:textAllCaps="false"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylerview_offer"

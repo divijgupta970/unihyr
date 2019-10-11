@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle("Offer Management");
                 break;
             case R.id.nav_drive:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DrivesFragment()).commit();
                 toolbar.setTitle("Drive Management");
                 break;
             case R.id.nav_users:
