@@ -82,7 +82,7 @@ public class VPPActiveProfilesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         activeProfiles.clear();
         progressBar.setVisibility(View.VISIBLE);
-        Uri builtUri = Uri.parse("http://sharechat.unihyr.com/demo/api/hrmanagepositionlistapi").buildUpon()
+        Uri builtUri = Uri.parse("https://sharechat.unihyr.com/demo/api/hrmanagepositionlistapi").buildUpon()
                 .appendQueryParameter("postId", ViewPositions.postId)
                 .appendQueryParameter("filterBy", "all")
                 .appendQueryParameter("selected_channel", "0")

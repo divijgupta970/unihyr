@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle("Database");
                 break;
             case R.id.nav_offer:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new offer_fragment_nik()).commit();
                 toolbar.setTitle("Offer Management");
                 break;
             case R.id.nav_drive:
