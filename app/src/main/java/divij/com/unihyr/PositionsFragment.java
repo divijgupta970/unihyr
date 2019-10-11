@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,6 +45,7 @@ public class PositionsFragment extends Fragment{
     FloatingActionButton fab;
     JSONArray result;
     EditText search_bar;
+    private TextView errorOccurred;
 
     public PositionsFragment() {
     }
@@ -63,6 +65,7 @@ public class PositionsFragment extends Fragment{
         spinner=v.findViewById(R.id.positionsSpinner);
         recyclerView=v.findViewById(R.id.positionsRecyclerView);
         search_bar=v.findViewById(R.id.positionsSearchEditText);
+        errorOccurred=v.findViewById(R.id.tvError);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -82,33 +85,37 @@ public class PositionsFragment extends Fragment{
                 progressBar.setVisibility(View.INVISIBLE);
                 ArrayList<Products> productList = new ArrayList<>();
                 productList.clear();
-                result=fetchDataPositions.JA;
-                for(int i =0 ;i <result.length(); i++){
-                    try {
-                        JSONObject JO = (JSONObject) result.get(i);
-                        productList.add(new Products(JO.getString("jobCode"),JO.getString("title"),JO.getString("location"),JO.getString("initiator"),JO.getString("spoc"),JO.getInt("noOfPosts"),JO.getBoolean("active"),JO));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                if (fetchDataPositions.JA!=null) {
+                    result = fetchDataPositions.JA;
+                    for (int i = 0; i < result.length(); i++) {
+                        try {
+                            JSONObject JO = (JSONObject) result.get(i);
+                            productList.add(new Products(JO.getString("jobCode"), JO.getString("title"), JO.getString("location"), JO.getString("initiator"), JO.getString("spoc"), JO.getInt("noOfPosts"), JO.getBoolean("active"), JO));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    final PositionsRecyclerAdapter recyclerAdapter = new PositionsRecyclerAdapter(getActivity(), productList, getActivity());
+                    search_bar.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            recyclerAdapter.getFilter().filter(s);
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+
+                        }
+                    });
+                    recyclerView.setAdapter(recyclerAdapter);
+                }else {
+                    errorFunction();
                 }
-                final PositionsRecyclerAdapter recyclerAdapter=new PositionsRecyclerAdapter(getActivity(),productList,getActivity());
-                search_bar.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        recyclerAdapter.getFilter().filter(s);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-                recyclerView.setAdapter(recyclerAdapter);
             }
         }).execute("https://demorms.unihyr.com/demo/api/allpost");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -139,5 +146,10 @@ public class PositionsFragment extends Fragment{
 
             }
         });
+    }
+
+    private void errorFunction() {
+        progressBar.setVisibility(View.INVISIBLE);
+        errorOccurred.setVisibility(View.VISIBLE);
     }
 }

@@ -82,7 +82,7 @@ public class VPPActiveProfilesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         activeProfiles.clear();
         progressBar.setVisibility(View.VISIBLE);
-        Uri builtUri = Uri.parse("http://sharechat.unihyr.com/demo/api/hrmanagepositionlistapi").buildUpon()
+        Uri builtUri = Uri.parse("https://sharechat.unihyr.com/demo/api/hrmanagepositionlistapi").buildUpon()
                 .appendQueryParameter("postId", ViewPositions.postId)
                 .appendQueryParameter("filterBy", "all")
                 .appendQueryParameter("selected_channel", "0")
@@ -105,7 +105,7 @@ public class VPPActiveProfilesFragment extends Fragment {
                     try {
                         JSONObject JO = (JSONObject) result.get(i);
                         activeProfiles.add(new ActiveProfiles(JO.getString("name"), JO.getString("submittedBy"), JO.getString("selectedChannel"), JO.getString("contact"), JO.getString("status"), JO.getString("currentRole"), JO.getString("currentOrg"),
-                                JO.getInt("exp"), JO.getInt("noticePeriod")));
+                                JO.getString("exp"), JO.getString("noticePeriod")));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -113,6 +113,8 @@ public class VPPActiveProfilesFragment extends Fragment {
                 }
                 ActiveProfilesAdapter recyclerViewAdapter = new ActiveProfilesAdapter(getActivity(),activeProfiles);
                 progressBar.setVisibility(View.INVISIBLE);
+                if (!activeProfiles.isEmpty())
+                noOfProfiles.setText(String.valueOf(activeProfiles.size()));
                 recyclerView.setAdapter(recyclerViewAdapter);
             }
         }).execute(url.toString());

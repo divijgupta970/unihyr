@@ -1,10 +1,9 @@
 package divij.com.unihyr.CardClasses;
 
 public class ActiveProfiles {
-    private String name,submittedBy,channel,phone,status,currentRole,currentOrg;
-    private int exp,np;
+    private String name,submittedBy,channel,phone,status,currentRole,currentOrg,exp,np;
 
-    public ActiveProfiles(String name, String submittedBy, String channel, String phone, String status, String currentRole, String currentOrg, int exp, int np) {
+    public ActiveProfiles(String name, String submittedBy, String channel, String phone, String status, String currentRole, String currentOrg, String exp, String np) {
         this.name = name;
         this.submittedBy = submittedBy;
         this.channel = channel;
@@ -43,11 +42,11 @@ public class ActiveProfiles {
         return currentOrg;
     }
 
-    public int getExp() {
+    public String getExp() {
         return exp;
     }
 
-    public int getNp() {
+    public String getNp() {
         return np;
     }
 }

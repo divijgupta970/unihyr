@@ -29,6 +29,7 @@ public class fetchDataPositions extends AsyncTask<String,Void,String> {
         super.onPostExecute(s);
         try {
             finalData.clear();
+            if (s!=null)
             JA= new JSONArray(s);
         } catch (JSONException e) {
             e.printStackTrace();
