@@ -87,7 +87,6 @@ public class VPPActiveProfilesFragment extends Fragment {
                 .appendQueryParameter("filterBy", "all")
                 .appendQueryParameter("selected_channel", "0")
                 .build();
-
         URL url=null;
         try {
             url = new URL(builtUri.toString());
