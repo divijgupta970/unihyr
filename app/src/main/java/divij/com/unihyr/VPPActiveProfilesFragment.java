@@ -107,7 +107,6 @@ public class VPPActiveProfilesFragment extends Fragment {
         new fetchDataPositions(new OnPositionsFetched() {
             @Override
             public void OnPositionsFetched() {
-                progressBar.setVisibility(View.INVISIBLE);
                 ArrayList<ActiveProfiles> activeProfiles = new ArrayList<>();
                 activeProfiles.clear();
                 result = fetchDataPositions.JA;
@@ -116,14 +115,16 @@ public class VPPActiveProfilesFragment extends Fragment {
                         JSONObject JO = (JSONObject) result.get(i);
                         activeProfiles.add(new ActiveProfiles(JO.getString("name"), JO.getString("submittedBy"), JO.getString("selectedChannel"), JO.getString("contact"), JO.getString("status"), JO.getString("currentRole"), JO.getString("currentOrg"),
                                 JO.getInt("exp"), JO.getInt("noticePeriod")));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-
-                ActiveProfilesAdapter recyclerViewAdapter = new ActiveProfilesAdapter();
+                ActiveProfilesAdapter recyclerViewAdapter = new ActiveProfilesAdapter(getActivity(),activeProfiles);
+                progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setAdapter(recyclerViewAdapter);
             }
         }).execute(url.toString());
+
     }
 }

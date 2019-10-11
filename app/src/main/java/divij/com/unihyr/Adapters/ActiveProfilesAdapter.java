@@ -24,8 +24,7 @@ import divij.com.unihyr.R;
 public class ActiveProfilesAdapter extends RecyclerView.Adapter<ActiveProfilesAdapter.ActiveProfilesViewHolder> {
     private Context mCtx;
     private List<ActiveProfiles> activeProfiles;
-    public List<ActiveProfiles> activeProfilesListfilterd;
-    public ActiveProfilesAdapter(){
+    public ActiveProfilesAdapter(Context mCtx,List<ActiveProfiles> activeProfiles){
         this.mCtx=mCtx;
         this.activeProfiles=new ArrayList<>();
         this.activeProfiles.clear();
