@@ -88,22 +88,13 @@ public class VPPActiveProfilesFragment extends Fragment {
                 .appendQueryParameter("selected_channel", "0")
                 .build();
 
-        URL url = null;
+        URL url=null;
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         Log.d("VPPActiveProfiles", url.toString());
-        /*activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));*/
         new fetchDataPositions(new OnPositionsFetched() {
             @Override
             public void OnPositionsFetched() {
