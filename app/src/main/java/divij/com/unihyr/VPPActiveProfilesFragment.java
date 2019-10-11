@@ -87,23 +87,13 @@ public class VPPActiveProfilesFragment extends Fragment {
                 .appendQueryParameter("filterBy", "all")
                 .appendQueryParameter("selected_channel", "0")
                 .build();
-
-        URL url = null;
+        URL url=null;
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         Log.d("VPPActiveProfiles", url.toString());
-        /*activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));
-        activeProfiles.add(new ActiveProfiles("Sumit","Anamika","In-House Team","9999999999","To be offered","--","--",0,0));*/
         new fetchDataPositions(new OnPositionsFetched() {
             @Override
             public void OnPositionsFetched() {
@@ -114,7 +104,7 @@ public class VPPActiveProfilesFragment extends Fragment {
                     try {
                         JSONObject JO = (JSONObject) result.get(i);
                         activeProfiles.add(new ActiveProfiles(JO.getString("name"), JO.getString("submittedBy"), JO.getString("selectedChannel"), JO.getString("contact"), JO.getString("status"), JO.getString("currentRole"), JO.getString("currentOrg"),
-                                JO.getInt("exp"), JO.getInt("noticePeriod")));
+                                JO.getString("exp"), JO.getString("noticePeriod")));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -122,6 +112,8 @@ public class VPPActiveProfilesFragment extends Fragment {
                 }
                 ActiveProfilesAdapter recyclerViewAdapter = new ActiveProfilesAdapter(getActivity(),activeProfiles);
                 progressBar.setVisibility(View.INVISIBLE);
+                if (!activeProfiles.isEmpty())
+                noOfProfiles.setText(String.valueOf(activeProfiles.size()));
                 recyclerView.setAdapter(recyclerViewAdapter);
             }
         }).execute(url.toString());

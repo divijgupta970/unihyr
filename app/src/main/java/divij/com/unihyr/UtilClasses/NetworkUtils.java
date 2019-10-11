@@ -45,7 +45,6 @@ public class NetworkUtils {
                 }
             }
         }
-        Log.d(LOG_TAG,JSONString);
         return JSONString;
     }
 
