@@ -1,9 +1,9 @@
 package divij.com.unihyr.CardClasses;
 
 public class driver_ka {
-    private String drive, location, position, cont_person, candidate, date, shortlisted,reject,noshow,action;
+    private String drive, location, position, cont_person, candidate, date, shortlisted,reject,noshow;
 
-    public driver_ka(String drive, String location, String position, String cont_person, String candidate, String date, String shortlisted, String reject, String noshow, String action) {
+    public driver_ka(String drive, String location, String position, String cont_person, String candidate, String date, String shortlisted, String reject, String noshow) {
         this.drive = drive;
         this.location = location;
         this.position = position;
@@ -13,7 +13,6 @@ public class driver_ka {
         this.shortlisted = shortlisted;
         this.reject = reject;
         this.noshow = noshow;
-        this.action = action;
     }
 
     public String getDrive() {
@@ -86,13 +85,5 @@ public class driver_ka {
 
     public void setNoshow(String noshow) {
         this.noshow = noshow;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
     }
 }

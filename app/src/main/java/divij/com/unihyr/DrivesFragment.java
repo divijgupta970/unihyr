@@ -16,14 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 import divij.com.unihyr.Adapters.driverCaredAdapter;
-import divij.com.unihyr.Adapters.driver_past_Adapter;
-import divij.com.unihyr.Adapters.driver_upcomingAdapter;
 import divij.com.unihyr.CardClasses.driver_ka;
-import divij.com.unihyr.CardClasses.driver_past;
-import divij.com.unihyr.CardClasses.driver_upcoming;
 
 
 /**
@@ -34,8 +32,8 @@ public class DrivesFragment extends Fragment {
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private ArrayList<driver_ka> driver_ka;
-    private ArrayList<driver_past> driver_past;
-    private ArrayList<driver_upcoming> driver_upcoming;
+    private driverCaredAdapter recyclerViewAdapter;
+    private FloatingActionButton fab;
 
     public DrivesFragment() {
         // Required empty public constructor
@@ -55,11 +53,22 @@ public class DrivesFragment extends Fragment {
         progressBar=v.findViewById(R.id.pbActiveProfiles_driver);
         progressBar.setVisibility(View.VISIBLE);
         spinner=v.findViewById(R.id.spinnerDrives);
+        fab=v.findViewById(R.id.fabDrives);
         recyclerView=v.findViewById(R.id.recyclerView_driver);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if(dy>0){
+                    fab.hide();
+                    return;
+                }
+                if(dy<0){
+                    fab.show();
+                }
+            }
+        });
         driver_ka=new ArrayList<>();
-        driver_past=new ArrayList<>();
-        driver_upcoming=new ArrayList<>();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.drives_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,43 +80,41 @@ public class DrivesFragment extends Fragment {
                     case 0:
                         driver_ka.clear();
                         progressBar.setVisibility(View.INVISIBLE);
-                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0", "1"));
-                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0", "1"));
-                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0", "1"));
-                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0", "1"));
-                        driverCaredAdapter recyclerViewAdapter =new driverCaredAdapter(getActivity(),driver_ka);
-                        progressBar.setVisibility(View.INVISIBLE);
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        recyclerViewAdapter=new driverCaredAdapter(getActivity(),driver_ka,true);
                         recyclerView.setAdapter(recyclerViewAdapter);
                         break;
                     case 1:
-                        driver_upcoming.clear();
+                        driver_ka.clear();
                         progressBar.setVisibility(View.INVISIBLE);
-                        driver_upcoming.add(new driver_upcoming("analyst", "Delhi", "Senior", "anamika", "5", "05 Oct 2019 10:00AM", "1", "0", "5", "1"));
-                        driver_upcoming.add(new driver_upcoming("analyst", "Delhi", "Senior", "anamika", "5", "05 Oct 2019 10:00AM", "1", "0", "5", "1"));
-                        driver_upcoming.add(new driver_upcoming("analyst", "Delhi", "Senior", "anamika", "5", "05 Oct 2019 10:00AM", "1", "0", "5", "1"));
-                        driver_upcoming.add(new driver_upcoming("analyst", "Delhi", "Senior", "anamika", "5", "05 Oct 2019 10:00AM", "1", "0", "5", "1"));
-                        driver_upcomingAdapter recyclerViewAdapter1 =new driver_upcomingAdapter(getActivity(),driver_upcoming);
-                        progressBar.setVisibility(View.INVISIBLE);
-                        recyclerView.setAdapter(recyclerViewAdapter1);
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        driver_ka.add(new driver_ka("campus", "Delhi", "senior Analyst", "rohit", "5", "05 Oct 2019 10:00AM", "0", "0", "0"));
+                        recyclerViewAdapter=new driverCaredAdapter(getActivity(),driver_ka,true);
+                        recyclerView.setAdapter(recyclerViewAdapter);
                         break;
                     case 2:
-                        driver_past.clear();
+                        driver_ka.clear();
                         progressBar.setVisibility(View.INVISIBLE);
-                        driver_past.add(new driver_past("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3", "4"));
-                        driver_past.add(new driver_past("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3", "4"));
-                        driver_past.add(new driver_past("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3", "4"));
-                        driver_past.add(new driver_past("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3", "4"));
-                        driver_past.add(new driver_past("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3", "4"));
-                        driver_past_Adapter recyclerViewAdapter2 =new driver_past_Adapter(getActivity(),driver_past);
-                        progressBar.setVisibility(View.INVISIBLE);
-                        recyclerView.setAdapter(recyclerViewAdapter2);
+                        driver_ka.add(new driver_ka("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3"));
+                        driver_ka.add(new driver_ka("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3"));
+                        driver_ka.add(new driver_ka("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3"));
+                        driver_ka.add(new driver_ka("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3"));
+                        driver_ka.add(new driver_ka("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3"));
+                        driver_ka.add(new driver_ka("asd", "sdf", "dfg", "ghj", "5", "05 Oct 2019 10:00AM", "1", "2", "3"));
+                        recyclerViewAdapter=new driverCaredAdapter(getActivity(),driver_ka,false);
+                        recyclerView.setAdapter(recyclerViewAdapter);
                         break;
 
                 }
             }
-
-
-
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {

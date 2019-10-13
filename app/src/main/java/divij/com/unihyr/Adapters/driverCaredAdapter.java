@@ -2,7 +2,6 @@ package divij.com.unihyr.Adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +21,14 @@ import divij.com.unihyr.R;
 public class driverCaredAdapter extends RecyclerView.Adapter<driverCaredAdapter.driverCaredAdapterViewHolder>{
 private Context mCtx;
 private List<driver_ka> driver_ka;
-    public driverCaredAdapter(Context mCtx, List<driver_ka> driver_ka)
+private Boolean hasAction;
+    public driverCaredAdapter(Context mCtx, List<driver_ka> driver_ka,Boolean hasAction)
 {
     this.mCtx=mCtx;
     this.driver_ka=new ArrayList<>();
     this.driver_ka.clear();
     this.driver_ka.addAll(driver_ka);
+    this.hasAction=hasAction;
 }
 
     @NonNull
@@ -43,9 +44,7 @@ private List<driver_ka> driver_ka;
         holder.infoButton_d.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               driver_ka currentItem=driver_ka.get(position);
-
-                Log.d(PositionsRecyclerAdapter.class.getSimpleName(),"info clicked");
+                driver_ka currentItem=driver_ka.get(position);
                 String moreInfoMessage="\nDate & Time: "+currentItem.getDate()
                         +"\n\ncandidates: "+currentItem.getCandidate()
                         +"\n\nShortListed: "+currentItem.getShortlisted()
@@ -75,7 +74,7 @@ private List<driver_ka> driver_ka;
     }
     class  driverCaredAdapterViewHolder extends RecyclerView.ViewHolder {
         TextView drive,location,postion,contact;
-        ImageView infoButton_d;
+        ImageView infoButton_d,addButton,downloadButton;
         public driverCaredAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             drive =itemView.findViewById(R.id.ddriveId);
@@ -83,6 +82,11 @@ private List<driver_ka> driver_ka;
             postion= itemView.findViewById(R.id.dpositionId);
             contact=itemView.findViewById(R.id.dsaleId);
             infoButton_d=itemView.findViewById(R.id.infoButton_p);
+            addButton=itemView.findViewById(R.id.ivAddDrives);
+            downloadButton=itemView.findViewById(R.id.ivDownloadDrives);
+            if (!hasAction){
+                addButton.setVisibility(View.GONE);
+            }
         }
     }
 }
