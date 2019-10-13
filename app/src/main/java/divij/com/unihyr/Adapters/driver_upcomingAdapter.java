@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import divij.com.unihyr.CardClasses.driver_ka;
 import divij.com.unihyr.CardClasses.driver_upcoming;
 import divij.com.unihyr.R;
 
@@ -27,8 +25,8 @@ public class driver_upcomingAdapter extends RecyclerView.Adapter<driver_upcoming
 
     public driver_upcomingAdapter(Context mCtx, List<driver_upcoming> driver_upcoming) {
         this.mCtx = mCtx;
-        this.driver_upcoming.clear();
         this.driver_upcoming = new ArrayList<>();
+        this.driver_upcoming.clear();
         this.driver_upcoming.addAll(driver_upcoming);
 
     }

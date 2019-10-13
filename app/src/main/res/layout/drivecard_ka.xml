@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,14 +29,14 @@
                     android:text="Drive"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/ddriveId"
                     style="@style/cardBlackText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="72dp"
                     android:text="Campus"
-                    app:layout_constraintStart_toEndOf="@+id/ddrive"
+                    app:layout_constraintStart_toEndOf="@+id/guideDrives"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
                     android:id="@+id/dlocation"
@@ -56,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Chandigarh"
-                    app:layout_constraintStart_toStartOf="@+id/ddriveId"
+                    app:layout_constraintStart_toStartOf="@+id/guideDrives"
                     app:layout_constraintTop_toBottomOf="@+id/ddriveId" />
                 <TextView
                     android:id="@+id/dposition"
@@ -74,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Sales"
-                    app:layout_constraintStart_toStartOf="@+id/dlocationId"
+                    app:layout_constraintStart_toStartOf="@+id/guideDrives"
                     app:layout_constraintTop_toBottomOf="@+id/dlocationId" />
                 <TextView
                     android:id="@+id/dcont"
@@ -92,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Mr. Akshey"
-                    app:layout_constraintStart_toStartOf="@+id/dpositionId"
+                    app:layout_constraintStart_toEndOf="@+id/guideDrives"
                     app:layout_constraintTop_toBottomOf="@+id/dpositionId" />
 
                 <ImageView
@@ -102,18 +101,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/card_info_icon" />
-
-                <ImageView
-                    android:id="@+id/internalJobPortalIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                <View
+                    android:id="@+id/guideDrives"
+                    android:layout_marginStart="16dp"
                     app:layout_constraintStart_toEndOf="@+id/dcont"
-                    app:layout_constraintTop_toTopOf="@+id/dcont"
-                    app:srcCompat="@drawable/list_icon" />
-
-
-
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

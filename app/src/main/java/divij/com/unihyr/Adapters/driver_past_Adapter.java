@@ -1,4 +1,5 @@
 package divij.com.unihyr.Adapters;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import divij.com.unihyr.CardClasses.driver_past;
 import divij.com.unihyr.R;
 public class driver_past_Adapter extends RecyclerView.Adapter<driver_past_Adapter.driver_past_AdapterViewHolder> {
@@ -24,8 +24,8 @@ public class driver_past_Adapter extends RecyclerView.Adapter<driver_past_Adapte
     public driver_past_Adapter(Context mCtx, ArrayList<driver_past> driver_past)
     {
         this.mCtx=mCtx;
-        this.driver_past.clear();
         this.driver_past=new ArrayList<>();
+        this.driver_past.clear();
         this.driver_past.addAll(driver_past);
     }
 

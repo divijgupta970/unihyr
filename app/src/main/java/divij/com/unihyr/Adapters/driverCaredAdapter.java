@@ -25,8 +25,8 @@ private List<driver_ka> driver_ka;
     public driverCaredAdapter(Context mCtx, List<driver_ka> driver_ka)
 {
     this.mCtx=mCtx;
-    this.driver_ka.clear();
     this.driver_ka=new ArrayList<>();
+    this.driver_ka.clear();
     this.driver_ka.addAll(driver_ka);
 }
 

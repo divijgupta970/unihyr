@@ -2,15 +2,6 @@ package divij.com.unihyr;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +10,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import divij.com.unihyr.Adapters.PositionsRecyclerAdapter;
 import divij.com.unihyr.Adapters.driverCaredAdapter;
 import divij.com.unihyr.Adapters.driver_past_Adapter;
 import divij.com.unihyr.Adapters.driver_upcomingAdapter;
-import divij.com.unihyr.Adapters.offerAdapter_nik;
 import divij.com.unihyr.CardClasses.driver_ka;
 import divij.com.unihyr.CardClasses.driver_past;
 import divij.com.unihyr.CardClasses.driver_upcoming;
-import divij.com.unihyr.UtilClasses.Products;
 
 
 /**
@@ -66,8 +57,11 @@ public class DrivesFragment extends Fragment {
         spinner=v.findViewById(R.id.spinnerDrives);
         recyclerView=v.findViewById(R.id.recyclerView_driver);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        driver_ka=new ArrayList<>();
+        driver_past=new ArrayList<>();
+        driver_upcoming=new ArrayList<>();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
+                R.array.drives_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
