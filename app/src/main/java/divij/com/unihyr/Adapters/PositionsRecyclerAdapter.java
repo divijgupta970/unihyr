@@ -168,8 +168,15 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
         holder.moreActionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.moreActions.setVisibility(View.VISIBLE);
-                holder.moreActionsButton.setBackgroundResource(R.drawable.ic_remove_black);
+                if (!productListfiltered.get(position).isActionShown()){
+                    productListfiltered.get(position).setActionShown(true);
+                    holder.moreActions.setVisibility(View.VISIBLE);
+                    holder.moreActionsButton.setBackgroundResource(R.drawable.ic_remove_black);
+                }else {
+                    productListfiltered.get(position).setActionShown(false);
+                    holder.moreActions.setVisibility(View.GONE);
+                    holder.moreActionsButton.setBackgroundResource(R.drawable.positions_fab);
+                }
             }
         });
 

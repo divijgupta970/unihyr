@@ -7,6 +7,7 @@ public class Products {
     private String id,position,location,initiator,hiringSpoc;
     private int totalProfiles;
     private boolean activated;
+    private boolean isActionShown;
     private JSONObject jsonObject;
 
     public Products(String id, String position, String location, String initiator, String hiringSpoc, int totalProfiles, boolean activated,JSONObject jsonObject) {
@@ -18,6 +19,15 @@ public class Products {
         this.totalProfiles = totalProfiles;
         this.activated = activated;
         this.jsonObject=jsonObject;
+        this.isActionShown=false;
+    }
+
+    public boolean isActionShown() {
+        return isActionShown;
+    }
+
+    public void setActionShown(boolean actionShown) {
+        isActionShown = actionShown;
     }
 
     public String getId() {
