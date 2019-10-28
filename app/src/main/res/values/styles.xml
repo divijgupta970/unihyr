@@ -9,7 +9,7 @@
     </style>
     <style name="cardYellowText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
     </style>
     <style name="cardHeaderText" parent="">
@@ -18,7 +18,7 @@
     </style>
     <style name="cardBlackText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">#000000</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/roboto_light</item>
     </style>
     <style name="cardInfoText" parent="TextAppearance.AppCompat">
