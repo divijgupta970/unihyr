@@ -2,28 +2,24 @@ package divij.com.unihyr;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,12 +35,12 @@ import divij.com.unihyr.UtilClasses.Products;
  * A simple {@link Fragment} subclass.
  */
 public class PositionsFragment extends Fragment{
-    public static Spinner spinner;
+    private MaterialSearchView searchView;
+    private Toolbar toolbar;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     FloatingActionButton fab;
     JSONArray result;
-    EditText search_bar;
     private TextView errorOccurred;
 
     public PositionsFragment() {
@@ -62,10 +58,19 @@ public class PositionsFragment extends Fragment{
         fab=v.findViewById(R.id.positionsFab);
         progressBar=v.findViewById(R.id.progressBarPositions);
         progressBar.setVisibility(View.VISIBLE);
-        spinner=v.findViewById(R.id.positionsSpinner);
+        toolbar=v.findViewById(R.id.search_toolbar_positions);
         recyclerView=v.findViewById(R.id.positionsRecyclerView);
-        search_bar=v.findViewById(R.id.positionsSearchEditText);
+        searchView=v.findViewById(R.id.search_view_positions);
         errorOccurred=v.findViewById(R.id.tvError);
+        toolbar.inflateMenu(R.menu.menu_search_filter);
+        MenuItem item=toolbar.getMenu().findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+        MenuItem item2 = toolbar.getMenu().findItem(R.id.spinner);
+        Spinner spinner = (Spinner) item2.getActionView();
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -96,20 +101,25 @@ public class PositionsFragment extends Fragment{
                         }
                     }
                     final PositionsRecyclerAdapter recyclerAdapter = new PositionsRecyclerAdapter(getActivity(), productList, getActivity());
-                    search_bar.addTextChangedListener(new TextWatcher() {
+                    searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
                         @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                        public boolean onQueryTextSubmit(String query) {
+                            return false;
                         }
 
                         @Override
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            recyclerAdapter.getFilter().filter(s);
+                        public boolean onQueryTextChange(String newText) {
+                            recyclerAdapter.getFilter().filter(newText);
+                            return false;
+                        }
+                    });
+                    searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+                        @Override
+                        public void onSearchViewShown() {
                         }
 
                         @Override
-                        public void afterTextChanged(Editable s) {
-
+                        public void onSearchViewClosed() {
                         }
                     });
                     recyclerView.setAdapter(recyclerAdapter);
@@ -118,34 +128,6 @@ public class PositionsFragment extends Fragment{
                 }
             }
         }).execute("https://demorms.unihyr.com/demo/api/allpost");
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.positions_spinner_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch(i){
-                    case 0://TODO: Add all here
-                        break;
-                    case 1://TODO: Add active here
-                        break;
-                    case 2://TODO: Add inactive here
-                        break;
-                    case 3://TODO: Add pending approval here
-                        break;
-                    case 4://TODO: Add pending validation here
-                        break;
-                    case 5://TODO: Add closed here
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     private void errorFunction() {
