@@ -104,22 +104,13 @@ public class PositionsFragment extends Fragment{
                     searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
                         @Override
                         public boolean onQueryTextSubmit(String query) {
-                            return false;
+                            return true;
                         }
 
                         @Override
                         public boolean onQueryTextChange(String newText) {
                             recyclerAdapter.getFilter().filter(newText);
                             return false;
-                        }
-                    });
-                    searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-                        @Override
-                        public void onSearchViewShown() {
-                        }
-
-                        @Override
-                        public void onSearchViewClosed() {
                         }
                     });
                     recyclerView.setAdapter(recyclerAdapter);

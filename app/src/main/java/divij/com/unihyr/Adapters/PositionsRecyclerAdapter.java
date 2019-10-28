@@ -10,13 +10,17 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+
 import divij.com.unihyr.R;
 import divij.com.unihyr.UtilClasses.Products;
 import divij.com.unihyr.ViewPositions;
@@ -161,6 +165,13 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
                 ImageViewCompat.setImageTintList(holder.externalConsultantIcon, ContextCompat.getColorStateList(context, R.color.colorAccent));
             }
         });
+        holder.moreActionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.moreActions.setVisibility(View.VISIBLE);
+                holder.moreActionsButton.setBackgroundResource(R.drawable.ic_remove_black);
+            }
+        });
 
     }
 
@@ -209,7 +220,8 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
     class ProductViewHolder extends RecyclerView.ViewHolder{
 
         TextView textViewPosition, textViewLocation, textViewInitiator, textViewId;
-        ImageView editButton,activatedButton,deactivateButton,infoButton,inHouseTeamIcon,socialMediaIcon,careerPageIcon,referralIcon,internalJobPortalIcon,externalConsultantIcon;
+        ImageView editButton,activatedButton,deactivateButton,infoButton,inHouseTeamIcon,socialMediaIcon,careerPageIcon,referralIcon,internalJobPortalIcon,externalConsultantIcon,moreActionsButton;
+        LinearLayout moreActions;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -219,6 +231,8 @@ public class PositionsRecyclerAdapter extends RecyclerView.Adapter<PositionsRecy
             textViewInitiator = itemView.findViewById(R.id.textViewInitiator);
             textViewId=itemView.findViewById(R.id.positionId);
             editButton=itemView.findViewById(R.id.editButton);
+            moreActions=itemView.findViewById(R.id.more_actions);
+            moreActionsButton=itemView.findViewById(R.id.more_actions_button);
             activatedButton=itemView.findViewById(R.id.activateButton);
             deactivateButton=itemView.findViewById(R.id.deactivateButton);
             infoButton=itemView.findViewById(R.id.infoButton);
